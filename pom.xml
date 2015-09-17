@@ -16,6 +16,9 @@
         <version.org.jboss.arquillian>1.1.9.Final</version.org.jboss.arquillian>
         <version.org.jboss.arquillian.drone>1.3.1.Final</version.org.jboss.arquillian.drone>
         <version.org.jboss.arquillian.graphene>2.0.3.Final</version.org.jboss.arquillian.graphene>
+        <version.org.jboss.arquillian.phantom.driver>1.1.4.Final</version.org.jboss.arquillian.phantom.driver>
+        <version.org.jboss.arquillian.selenium>2.47.1</version.org.jboss.arquillian.selenium>
+        <browser>phantomjs</browser>
     </properties>
 
     <dependencyManagement>
@@ -35,6 +38,13 @@
                 <version>${version.org.jboss.arquillian.drone}</version>
                 <scope>import</scope>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.selenium</groupId>
+                <artifactId>selenium-bom</artifactId>
+                <version>${version.org.jboss.arquillian.selenium}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -58,20 +68,43 @@
             <type>pom</type>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-phantom-driver</artifactId>
+            <version>${version.org.jboss.arquillian.phantom.driver}</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-arquillian-container-remote</artifactId>
+            <version>7.1.1.Final</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-<!--
+
+    <profiles>
+        <profile>
+            <id>firefox</id>
+            <properties>
+                <browser>firefox</browser>
+            </properties>
+        </profile>
+        <profile>
+            <id>chrome</id>
+            <properties>
+                <browser>chrome</browser>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <systemProperties>
-                        <arq.extension.graphene.waitAjaxInterval>30</arq.extension.graphene.waitAjaxInterval>
-                        <arq.extension.graphene.browser>phantomjs</arq.extension.graphene.browser>
-                    </systemProperties>
-                </configuration>
-            </plugin>
-        </plugins>
+        <!-- test resource filtering evaluates ${browser} expression in arquillian.xml -->
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
     </build>
--->
 </project>
