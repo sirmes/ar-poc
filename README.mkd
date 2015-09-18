@@ -1,0 +1,7 @@
+
+
+Make sure you are running Java 6 on command line
+
+```sh
+mvn test
+```
