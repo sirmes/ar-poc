@@ -2,6 +2,21 @@
 
 Make sure you are running Java 6 on command line
 
+ - Run only unit tests
+
 ```sh
 mvn test
 ```
+
+ - Run only Integration tests
+
+ ```sh
+ mvn failsafe:integration-test
+ ```
+
+ - Run all tests
+
+ ```sh
+ mvn verify
+ ```
+
