@@ -19,7 +19,8 @@
         <version.org.jboss.arquillian.graphene>2.0.3.Final</version.org.jboss.arquillian.graphene>
         <version.org.jboss.arquillian.phantom.driver>1.1.4.Final</version.org.jboss.arquillian.phantom.driver>
         <version.org.jboss.arquillian.selenium>2.47.1</version.org.jboss.arquillian.selenium>
-        <browser>phantomjs</browser>
+        <!-- <browser>phantomjs</browser> -->
+        <browser>chrome</browser>
     </properties>
 
     <dependencyManagement>
@@ -81,6 +82,11 @@
             <artifactId>jboss-as-arquillian-container-remote</artifactId>
             <version>7.1.1.Final</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.graphene</groupId>
+            <artifactId>arquillian-browser-screenshooter</artifactId>
+            <version>2.3.1</version>
         </dependency>
     </dependencies>
 
